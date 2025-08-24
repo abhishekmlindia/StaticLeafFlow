@@ -18,6 +18,31 @@ body {
   --color-site: #f60;
 }
 @layer utilities {
+  .gradient-border-on-focus:focus {
+  position: relative;
+  /* Use a transparent border on the element itself to create space for the pseudo-element border. */
+  border-color: transparent;
+  /* Add an outline to prevent the default focus ring. */
+  outline: none;
+}
+
+.gradient-border-on-focus:focus::before {
+  content: '';
+  position: absolute;
+  /* The inset property is a shorthand for top, right, bottom, and left. */
+  inset: -2px; /* Adjust this value to control the border thickness. */
+  border-radius: inherit; /* Inherit border-radius from the parent element. */
+  padding: 2px; /* Add padding to push the gradient outwards. */
+  background: linear-gradient(
+    to right,
+    #ff7e5f,
+    #feb47b,
+    #86a8e7,
+    #91eae4
+  ); /* Your gradient colors. */
+  z-index: -1; /* Place the pseudo-element behind the input. */
+}
+
   .input-custom::placeholder {
     @apply text-gray-400;
   }
