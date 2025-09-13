@@ -7,6 +7,7 @@ import Login from "../components/auth/login";
 import TestTable from "../components/auth/testTable";
 import KnowladgeBase from "../components/pages/knowladgebase";
 import Chat from "../components/pages/chat";
+import Dashboard from "../components/pages/dashboard";
 const Search = lazy(() =>
   import("../components/pages/search")
 );
@@ -28,6 +29,14 @@ function RouteConfig() {
           <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />
           <Route path="/datatable" element={<TestTable />} />
+          <Route
+            path="dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+               </ProtectedRoute>
+            }
+          />
             <Route
             path="knowladgebase"
             element={
