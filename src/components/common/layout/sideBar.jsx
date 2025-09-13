@@ -8,6 +8,7 @@ import {
   CloudDrizzle,
   Users,
   Settings,
+   Monitor,
 } from "feather-icons-react";
 import SmallLogo from "../../../../src/assets/img/small-logo.png";
 
@@ -60,6 +61,13 @@ function SideBar({ isOpen, setIsOpen }) {
               <Tooltip title="Users" placement="right">
                 <a href="#" className="menu-link">
                   <Users width={20}/>
+                </a>
+              </Tooltip>
+            </li>
+                <li className="mb-3">
+              <Tooltip title="Users" placement="right">
+                <a href="#" className="menu-link">
+                  <Monitor width={20}/>
                 </a>
               </Tooltip>
             </li>
