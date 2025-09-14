@@ -2,6 +2,10 @@ import { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { resetStore } from "../../../reduxToolKit/resetAction";
+import TaskbarDrop from "../../../../src/assets/img/taskdropdown.png";
+import MessageDropdown from "../../../../src/assets/img/messageDropdown.png";
+import NotificationDropdown from "../../../../src/assets/img/notificationDropdown.png";
+
 import {
   Sun,
   Moon,
@@ -9,9 +13,12 @@ import {
   HelpCircle,
   Menu,
   Sidebar,
+  List,
+  Mail,
+  Bell,
 } from "feather-icons-react";
 import { UserOutlined } from "@ant-design/icons";
-import { Avatar, Space, Dropdown } from "antd";
+import { Avatar, Space, Dropdown, Badge } from "antd";
 
 const languageItems = [
   {
@@ -70,6 +77,38 @@ function TopBar({ isOpen, setIsOpen }) {
     { type: "divider" },
     { label: "3rd menu item", key: "3" },
   ];
+
+  const items = [
+    {
+      key: "1",
+      label: (
+        <div className="">
+          <img src={TaskbarDrop} className="w-[345px]" />
+        </div>
+      ),
+    },
+  ];
+  const items1 = [
+    {
+      key: "1",
+      label: (
+        <div className="">
+          <img src={MessageDropdown} className="w-[255px]" />
+        </div>
+      ),
+    },
+  ];
+  const items2 = [
+    {
+      key: "1",
+      label: (
+        <div className="">
+          <img src={NotificationDropdown} className="w-[255px]" />
+        </div>
+      ),
+    },
+  ];
+
   useEffect(() => {
     const storedTheme = localStorage.getItem("theme");
     const prefersDark = window.matchMedia(
@@ -189,17 +228,64 @@ function TopBar({ isOpen, setIsOpen }) {
                   </a>{" "}
                 </li>{" "}
                 <li>
-                  {" "}
-                  <a
-                    className="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
-                    href="#"
+                  <Dropdown
+                    menu={{ items }}
+                    trigger={["click"]}
+                    placement="bottomRight"
+                    className="flex justify-center"
                   >
-                    {" "}
-                    <HelpCircle
-                      size={24}
-                      className="text-gray-950 dark:text-white"
-                    />{" "}
-                  </a>{" "}
+                    <a
+                      onClick={(e) => e.preventDefault()}
+                      className="cursor-pointer"
+                    >
+                      <Badge count={3} offset={[4, 3]}>
+                        <List
+                          size={24}
+                          className="text-gray-950 dark:text-white transition hover:opacity-75"
+                        />
+                      </Badge>
+                    </a>
+                  </Dropdown>
+                </li>{" "}
+                 <li>
+                  <Dropdown
+                    menu={{items: items1 }}
+                    trigger={["click"]}
+                    placement="bottomRight"
+                    className="flex justify-center"
+                  >
+                    <a
+                      onClick={(e) => e.preventDefault()}
+                      className="cursor-pointer"
+                    >
+                      <Badge count={4} offset={[3, 4]}>
+                        <Mail
+                          size={24}
+                          className="text-gray-950 dark:text-white transition hover:opacity-75"
+                        />
+                      </Badge>
+                    </a>
+                  </Dropdown>
+                </li>{" "}
+                 <li>
+                  <Dropdown
+                    menu={{ items: items2 }}
+                    trigger={["click"]}
+                    placement="bottomRight"
+                    className="flex justify-center"
+                  >
+                    <a
+                      onClick={(e) => e.preventDefault()}
+                      className="cursor-pointer"
+                    >
+                      <Badge count={3} offset={[3, 3]}>
+                        <Bell
+                          size={24}
+                          className="text-gray-950 dark:text-white transition hover:opacity-75"
+                        />
+                      </Badge>
+                    </a>
+                  </Dropdown>
                 </li>{" "}
                 <li>
                   {" "}
@@ -229,7 +315,7 @@ function TopBar({ isOpen, setIsOpen }) {
                       <Avatar
                         className="bg-site/60 mr-2"
                         shape="square"
-                        icon={<UserOutlined className="text-gray-900"/>}
+                        icon={<UserOutlined className="text-gray-900" />}
                       />
                       <h6 className="font-semibold text-sm">Bessie Cooper</h6>
                       <ChevronDown className="text-gray-500" />
